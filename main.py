@@ -1,19 +1,74 @@
 import pandas as pd
 import random
+from enum import Enum
+#全種類のカードを生成するクラス
 
-#全種類のカードを生成する関数
-def make_cards() -> list:
-    
-  card_marks = ["♠", "♥", "♦", "♣"]
-  card_numbers = ["A", "2", "3", "4", "5", "6", "7", "8", "9", "10", "J", "Q", "K"]
-  cards = []
-  for mark in card_marks:
-    for number in card_numbers:
-      card = mark + number
-      cards.append(card)
-  return cards
+
+class Cards(Enum):
+  SPADE_2 = {"suit": "spade", "number": "2", "looks": "♠2"}
+  SPADE_3 = {"suit": "spade", "number": "3", "looks": "♠3"}
+  SPADE_4 = {"suit": "spade", "number": "4", "looks": "♠4"}
+  SPADE_5 = {"suit": "spade", "number": "5", "looks": "♠5"}
+  SPADE_6 = {"suit": "spade", "number": "6", "looks": "♠6"}
+  SPADE_7 = {"suit": "spade", "number": "7", "looks": "♠7"}
+  SPADE_8 = {"suit": "spade", "number": "8", "looks": "♠8"}
+  SPADE_9 = {"suit": "spade", "number": "9", "looks": "♠9"}
+  SPADE_10 = {"suit": "spade", "number": "10", "looks": "♠10"}
+  SPADE_J = {"suit": "spade", "number": "J", "looks": "♠J"}
+  SPADE_Q = {"suit": "spade", "number": "Q", "looks": "♠Q"}
+  SPADE_K = {"suit": "spade", "number": "K", "looks": "♠K"}
+  SPADE_A = {"suit": "spade", "number": "A", "looks": "♠A"}
+
+  HEART_2 = {"suit": "heart", "number": "2", "looks": "♥2"}
+  HEART_3 = {"suit": "heart", "number": "3", "looks": "♥3"}
+  HEART_4 = {"suit": "heart", "number": "4", "looks": "♥4"}
+  HEART_5 = {"suit": "heart", "number": "5", "looks": "♥5"}
+  HEART_6 = {"suit": "heart", "number": "6", "looks": "♥6"}
+  HEART_7 = {"suit": "heart", "number": "7", "looks": "♥7"}
+  HEART_8 = {"suit": "heart", "number": "8", "looks": "♥8"}
+  HEART_9 = {"suit": "heart", "number": "9", "looks": "♥9"}
+  HEART_10 = {"suit": "heart", "number": "10", "looks": "♥10"}
+  HEART_J = {"suit": "heart", "number": "J", "looks": "♥J"}
+  HEART_Q = {"suit": "heart", "number": "Q", "looks": "♥Q"}
+  HEART_K = {"suit": "heart", "number": "K", "looks": "♥K"}
+  HEART_A = {"suit": "heart", "number": "A", "looks": "♥A"}
+
+  DIAMOND_2 = {"suit": "diamond", "number": "2", "looks": "♦2"}
+  DIAMOND_3 = {"suit": "diamond", "number": "3", "looks": "♦3"}
+  DIAMOND_4 = {"suit": "diamond", "number": "4", "looks": "♦4"}
+  DIAMOND_5 = {"suit": "diamond", "number": "5", "looks": "♦5"}
+  DIAMOND_6 = {"suit": "diamond", "number": "6", "looks": "♦6"}
+  DIAMOND_7 = {"suit": "diamond", "number": "7", "looks": "♦7"}
+  DIAMOND_8 = {"suit": "diamond", "number": "8", "looks": "♦8"}
+  DIAMOND_9 = {"suit": "diamond", "number": "9", "looks": "♦9"}
+  DIAMOND_10 = {"suit": "diamond", "number": "10", "looks": "♦10"}
+  DIAMOND_J = {"suit": "diamond", "number": "J", "looks": "♦J"}
+  DIAMOND_Q = {"suit": "diamond", "number": "Q", "looks": "♦Q"}
+  DIAMOND_K = {"suit": "diamond", "number": "K", "looks": "♦K"}
+  DIAMOND_A = {"suit": "diamond", "number": "A", "looks": "♦A"}
+
+  CLUB_2 = {"suit": "club", "number": "2", "looks": "♣2"}
+  CLUB_3 = {"suit": "club", "number": "3", "looks": "♣3"}
+  CLUB_4 = {"suit": "club", "number": "4", "looks": "♣4"}
+  CLUB_5 = {"suit": "club", "number": "5", "looks": "♣5"}
+  CLUB_6 = {"suit": "club", "number": "6", "looks": "♣6"}
+  CLUB_7 = {"suit": "club", "number": "7", "looks": "♣7"}
+  CLUB_8 = {"suit": "club", "number": "8", "looks": "♣8"}
+  CLUB_9 = {"suit": "club", "number": "9", "looks": "♣9"}
+  CLUB_10 = {"suit": "club", "number": "10", "looks": "♣10"}
+  CLUB_J = {"suit": "club", "number": "J", "looks": "♣J"}
+  CLUB_Q = {"suit": "club", "number": "Q", "looks": "♣Q"}
+  CLUB_K = {"suit": "club", "number": "K", "looks": "♣K"}
+  CLUB_A = {"suit": "club", "number": "A", "looks": "♣A"}
 
 #二人でプレーすると仮定してカードを配布する関数
+def distibute_card() -> tuple:
+  for card in Cards:
+    print(card.value)
+
+
+
+"""
 def distibute_card() -> tuple:
   cards = make_cards()
   player_one = []
@@ -26,7 +81,7 @@ def distibute_card() -> tuple:
   return player_one,player_two
 
 [player_one,player_two] = distibute_card()
-  
+"""
 
 
 #プレイヤー１が何個のペアを持っているか判定する関数
@@ -220,184 +275,6 @@ def confident():
   else:
     return False
 
-
-#プレイヤー2が何個のペアを持っているか判定する関数
-def judge_how_many_pair_second(player_two) -> tuple:
-  player_two_numbers = []
-  n = 0
-  for _ in range(5):
-    player_two_numbers.append(player_two[n][1:])
-    n += 1
-
-  #print(player_two_numbers)
-
-  how_many_pairs = []
-  for player_two_number in player_two_numbers:
-    how_many_pairs .append(player_two_numbers.count(player_two_number))
-  
-  #print(how_many_pairs)
-  number_pair_second = max(how_many_pairs)
-
-  return number_pair_second,player_two_numbers
-
-[number_pair_second, player_two_numbers] = judge_how_many_pair_second(player_two)
-#print(f"このプレイヤーは{number_pair_second}ペアです")
-
-#プレイヤー2の数字が連続しているか調べる関数
-def judge_sequence(player_two_numbers)  -> bool:
-  for i in range(4):
-    if player_two_numbers[i] +1 !=  player_two_numbers[i+1]:
-      print("ストレートではありません")
-      return False
-    
-    else:
-      return True
-    
-#プレイヤー2の数字を提供する関数
-def provide_all_numbers(player_two):
-  player_two_numbers = []
-  n = 0
-  for _ in range(5):
-
-    try:
-      player_two_numbers.append(int(player_two[n][1:]))
-      n += 1
-
-    except ValueError as error:
-      if player_two[n][1:] == "J":
-        player_two_numbers.append(11)
-
-      elif player_two[n][1:] == "Q":
-        player_two_numbers.append(12)
-
-      elif player_two[n][1:] == "K":
-        player_two_numbers.append(13)
-
-      elif player_two[n][1:] == "A":
-        player_two_numbers.append(1)
-      n += 1
-
-  player_two_numbers.sort()
-  return player_two_numbers
-
-
-#プレイヤー2がストレートか判断する関数
-def judge_stright(player_two) -> bool:
-  player_two_numbers = []
-  n = 0
-  for _ in range(5):
-
-    try:
-      player_two_numbers.append(int(player_two[n][1:]))
-      n += 1
-
-    except ValueError as error:
-      if player_two[n][1:] == "J":
-        player_two_numbers.append(11)
-
-      elif player_two[n][1:] == "Q":
-        player_two_numbers.append(12)
-
-      elif player_two[n][1:] == "K":
-        player_two_numbers.append(13)
-
-      elif player_two[n][1:] == "A":
-        player_two_numbers.append(1)
-      n += 1
-
-  player_two_numbers.sort()
-
-
-  for i in range(4):
-    if player_two_numbers[i] +1 !=  player_two_numbers[i+1]:
-      print("ストレートではありません")
-      return False
-    
-    else:
-      return True
-    
-#プレイヤー2がフラシュか判断する関数
-def judge_fullhouse(player_two) -> bool:
-  player_two_suit = []
-  
-  for n in range(5):
-    player_two_suit.append(player_two[n][0])
-  
-  print(player_two_suit)
-
-  for i in range(4):
-    if player_two[i][0] != player_two[i + 1][0]:
-      print("フラッシュではない")
-      return False
-    else:
-      return True
-    
-#プレイヤー2フルハウスか判断する関数
-def judge_fullhouse(player_two) -> bool:
-
-  player_two_numbers = []
-  n = 0
-  for _ in range(5):
-    player_two_numbers.append(player_two[n][1:])
-    n += 1
-
-  print(player_two_numbers)
-
-  how_many_pairs = []
-  for player_two_number in player_two_numbers:
-    how_many_pairs .append(player_two_numbers.count(player_two_number))
-  
-  print(how_many_pairs)
-
-  if (3 in how_many_pairs) and (2 in how_many_pairs):
-    print("フルハウスです")
-    return True
-  else:
-    return False
-
-#プレーヤー2がフォーカードか判断する関数
-def judge_four_cards(player_two) -> bool:
-  player_two_numbers = []
-  n = 0
-  for _ in range(5):
-    player_two_numbers.append(player_two[n][1:])
-    n += 1
-
-  print(player_two_numbers)
-
-  how_many_pairs = []
-  for player_two_number in player_two_numbers:
-    how_many_pairs .append(player_two_numbers.count(player_two_number))
-  
-  print(how_many_pairs)
-  number_pair = max(how_many_pairs)
-  if number_pair == 4:
-    print("フォーカードです")
-    return True
-  else:
-    return False
-  
-#プレイヤー2がストレートフラッシュか判断する関数
-def judge_stright_flush(player_two) -> bool:
-  first_step = judge_sequence(player_two_numbers)
-  second_step = judge_fullhouse(player_two)
-  if first_step and second_step:
-    print("これはストレートフラッシュです")
-    return True
-  
-  else:
-    return False
-  
-#プレイヤー2がロイヤルストレートフラッシュか判断する関数
-def judge_loyal_stright_flush(player_two):
-  first_judge = judge_fullhouse(player_two)
-  player_two_numbers = provide_all_numbers(player_two)
-  if ([1, 10, 11, 12, 13] == player_two_numbers) and first_judge:
-    print("ロイヤルストレートフラッシュです")
-    return True
-
-  else:
-    return False
 #カードを交換する関数
 def change_cards_two(player_two):
   how_many_card_change = int(input("何枚のカードを交換したいですか"))
@@ -532,14 +409,7 @@ def main():
 
       break
 
-
- 
-
   
-
-    
-
-
 
 if __name__ == "__main__":
   main()
