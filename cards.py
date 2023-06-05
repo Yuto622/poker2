@@ -61,25 +61,13 @@ class Cards(Enum):
   CLUB_K = {"suit": "club", "number": "K", "looks": "♣K"}
   CLUB_A = {"suit": "club", "number": "A", "looks": "♣A"}
 
-#カード全種類を生成する関数
-def cards_options() -> list:
-    added_cards_options = []
-    for card in Cards:
-        added_cards = card.value
-        added_cards_options.append(added_cards)
-    return added_cards_options
 
-added_cards_options = cards_options()
 
-#二人でプレーすると仮定してカードを配布する関数
-def distribute_card(added_cards_options) -> tuple:
-    player_one = []
-    player_two = []
-    while len(set(player_one)) < 5:
-        player_one.append(random.choice(added_cards_options)["looks"])
-    while len(set(player_two)) < 5:
-        player_two.append(random.choice(added_cards_options)["looks"])
-    return player_one, player_two
+        
 
-[player_one, player_two] = distribute_card(added_cards_options)
-print(player_one, player_two)
+
+  
+
+
+
+
